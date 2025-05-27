@@ -113,7 +113,7 @@ function Checkout() {
           </h2>
           <div className="flex items-center gap-4 mb-4">
             <img
-              src="/public/vite.svg"
+              src="/vite.svg"
               alt="Product"
               className="w-16 h-16 rounded-4xl object-cover"
             />
