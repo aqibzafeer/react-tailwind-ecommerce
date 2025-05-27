@@ -6,11 +6,13 @@ import Products from "./pages/Products";
 import Category from "./pages/Category";
 import PageNotFound from "./pages/PageNotFound";
 import Checkout from "./pages/Checkout";
+import AuthForm from "./pages/Auth";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/authform" element={<AuthForm />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/products" element={<Products />} />
