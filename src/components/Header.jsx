@@ -11,7 +11,7 @@ function Header() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo + Brand */}
         <div className="flex items-center space-x-2">
-          <img src="/public/logo.png" alt="Logo" className="h-15 w-25" />
+          <img src="/logo.png" alt="Logo" className="h-15 w-25" />
         </div>
 
         {/* Hamburger Icon (Mobile) */}

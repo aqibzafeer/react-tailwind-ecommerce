@@ -1,5 +1,3 @@
-// src/pages/Home.jsx
-
 function Home() {
   return (
     <div>
@@ -48,6 +46,7 @@ function Home() {
           ))}
         </div>
       </section>
+
       {/* /* Feature Section */}
       <section className="p-4 sm:p-6 bg-gray-50">
         <div className="max-w-7xl mx-auto grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
