@@ -5,7 +5,7 @@ function Home() {
     <div>
       <section
         className="bg-cover bg-center h-[80vh] sm:h-[50vh] md:h-[80vh] flex items-center justify-start"
-        style={{ backgroundImage: "url(/public/banner-img.jpeg)" }}
+        style={{ backgroundImage: "url(/banner-img.jpeg)" }}
       >
         <div className="flex h-full w-2/3 ml-20">
           <div className="flex flex-col justify-center h-full w-1/2 p-4 sm:p-6 rounded">
@@ -28,14 +28,15 @@ function Home() {
         <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
           Shop by Category
         </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {[
-            "Electronics",
-            "Fashion",
-            "Home & Garden",
-            "Toys",
-            "Books",
-            "Sports",
+            "Cardigans & Jumpers",
+            "Dresses",
+            "Shawl",
+            "Jackets & Coats",
+            "Shorts",
+            "Tops",
           ].map((cat) => (
             <div
               key={cat}
@@ -107,7 +108,6 @@ function Home() {
           Featured Products
         </h2>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {/* Sample product cards (You can map actual data here) */}
           {[1, 2, 3, 4].map((item) => (
             <div
               key={item}
