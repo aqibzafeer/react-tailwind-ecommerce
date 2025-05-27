@@ -32,8 +32,8 @@ function Header() {
         </nav>
 
         {/* Search + Icons */}
-        <div className="flex items-center space-x-4">
-          <div className="relative hidden sm:block">
+        <div className="flex items-center space-x-4 hidden lg:flex">
+          <div className="relative">
             <input
               type="text"
               placeholder="Search Products..."
@@ -45,8 +45,6 @@ function Header() {
           <CartDrawer />
         </div>
       </div>
-
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white shadow-md px-6 py-4">
           <nav className="flex flex-col space-y-4 text-gray-700 font-medium">
