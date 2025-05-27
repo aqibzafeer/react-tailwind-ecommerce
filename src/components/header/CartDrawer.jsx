@@ -30,9 +30,10 @@ const CartDrawer = () => {
 
       {/* Cart Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[400px] bg-white shadow-xl z-50 transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full max-w-[400px] sm:w-[400px] bg-white shadow-xl z-50 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        } flex flex-col`}
+        style={{ maxWidth: "100vw" }}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b">
@@ -51,7 +52,7 @@ const CartDrawer = () => {
           <div className="flex-1">
             <p className="font-medium">Ship Your Idea</p>
             <p className="text-sm text-gray-500">€18.00</p>
-            <div className="flex items-center mt-2 gap-2">
+            <div className="flex items-center mt-2 gap-2 flex-wrap">
               <button
                 onClick={() => handleQuantityChange(-1)}
                 className="w-6 h-6 text-center border rounded"
@@ -74,7 +75,7 @@ const CartDrawer = () => {
 
         {/* Checkout */}
         <div className="p-4 mt-auto border-t">
-          <button className="w-full py-3 text-white bg-gray-900 hover:bg-gray-800 rounded">
+          <button className="w-full py-3 text-white bg-gray-900 hover:bg-gray-800 rounded text-base sm:text-lg">
             Checkout €{(quantity * 18).toFixed(2)}
           </button>
         </div>
