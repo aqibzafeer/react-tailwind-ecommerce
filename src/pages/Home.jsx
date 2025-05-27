@@ -3,25 +3,27 @@
 function Home() {
   return (
     <div>
-      {/* Top Banner Section */}
       <section
-        className="bg-cover bg-center h-[80vh] sm:h-[50vh] md:h-[80vh] flex items-left justify-left"
+        className="bg-cover bg-center h-[80vh] sm:h-[50vh] md:h-[80vh] flex items-center justify-start"
         style={{ backgroundImage: "url(/public/banner-img.jpeg)" }}
       >
-        <div className="p-4 sm:p-6 rounded w-[90vw] mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 sm:mb-4">
-            Up to 10% off!{" "}
-          </h1>
-          <p className="mb-2 sm:mb-4 text-sm sm:text-base">
-            Don't miss out on some special items at extraordinary discounted
-            prices. For a limited time!
-          </p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-4 sm:px-6 py-2 rounded text-white font-semibold text-sm sm:text-base">
-            Shop Now
-          </button>
+        <div className="flex h-full w-2/3 ml-20">
+          <div className="flex flex-col justify-center h-full w-1/2 p-4 sm:p-6 rounded">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 sm:mb-4">
+              Up to 10% off!{" "}
+            </h1>
+            <p className="mb-10 sm:mb-4 text-sm sm:text-base">
+              Don't miss out on some special items at extraordinary discounted
+              prices. For a limited time!
+            </p>
+            <button className="w-1/3 bg-purple-600 hover:bg-purple-700 px-4 sm:px-6 py-2 rounded text-white font-semibold text-sm sm:text-base">
+              Shop Now
+            </button>
+          </div>
+          <div className="w-1/2" />
         </div>
       </section>
-      {/* Shop by Category */}
+
       <section className="p-4 sm:p-6 max-w-7xl mx-auto">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
           Shop by Category
