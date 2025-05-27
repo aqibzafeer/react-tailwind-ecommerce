@@ -100,7 +100,7 @@ function Checkout() {
             />
             <button
               type="submit"
-              className="w-1/2 sm:col-span-2 py-3 text-white bg-gradient-to-r from-purple-700 to-blue-900 hover:from-blue-800 hover:to-blue-600 rounded-lg text-lg font-semibold shadow-md transition"
+              className="mt-auto w-full bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
             >
               Place Order Rs:{(quantity * 1000).toFixed(2)}
             </button>

@@ -20,7 +20,7 @@ const HeroSection = () => (
           and spirit. With a clever offering, superb support and a secure
           checkout you’re in good hands.
         </p>
-        <button className="w-1/2 sm:w-1/3 bg-purple-600 hover:bg-purple-700 px-4 sm:px-6 py-2 rounded text-white font-semibold text-sm sm:text-base">
+        <button className="mt-auto w-1/3 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
           Shop Now
         </button>
       </div>

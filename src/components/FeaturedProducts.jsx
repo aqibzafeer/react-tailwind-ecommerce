@@ -57,7 +57,7 @@ const FeaturedProducts = () => (
             <p className="text-gray-900 font-bold text-base mb-4">
               {product.price}
             </p>
-            <button className="mt-auto w-full bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
+            <button className="mt-auto w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
               Add to Cart
             </button>
           </div>

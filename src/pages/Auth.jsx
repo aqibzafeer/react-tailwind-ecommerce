@@ -46,7 +46,7 @@ const AuthForm = () => {
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+            className=" mt-auto w-full bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
           >
             {isLogin ? "Login" : "Sign Up"}
           </button>
