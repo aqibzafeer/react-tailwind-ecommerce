@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiUser, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import CartDrawer from "./CartDrawer";
+import UserDrawer from "./UserDrawer";
+import SearchBar from "./SearchBar";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,9 +13,10 @@ function Header() {
   return (
     <header className="bg-white shadow-md py-4 px-6">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo + Brand */}
         <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-15 w-25" />
+          <Link to="/">
+            <img src="/logo.png" alt="Logo" className="h-15 w-25" />
+          </Link>
         </div>
 
         {/* Hamburger Icon (Mobile) */}
@@ -75,17 +78,8 @@ function Header() {
 
         {/* Search + Icons */}
         <div className=" items-center space-x-4 hidden lg:flex">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search Products..."
-              className="pl-10 pr-4 py-1.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <FiSearch className="absolute left-3 top-2.5 text-gray-500" />
-          </div>
-          <Link to="/authform" onClick={() => setMenuOpen(false)}>
-            <FiUser className="text-xl text-gray-700 hover:text-purple-600 cursor-pointer" />
-          </Link>
+          <SearchBar />
+          <UserDrawer />
           <CartDrawer />
         </div>
       </div>
@@ -145,17 +139,8 @@ function Header() {
               Contact
             </Link>
             <div className="flex items-center space-x-4 mt-2">
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  placeholder="Search Products..."
-                  className="pl-10 pr-4 py-1.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full"
-                />
-                <FiSearch className="absolute left-3 top-2.5 text-gray-500" />
-              </div>
-              <Link to="/authform">
-                <FiUser className="text-xl text-gray-700 hover:text-purple-600 cursor-pointer" />
-              </Link>
+              <SearchBar />
+              <UserDrawer />
               <CartDrawer />
             </div>
           </nav>

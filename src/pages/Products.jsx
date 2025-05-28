@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "./api/FetchData";
+import SearchBar from "../components/header/SearchBar";
+import { useSearch } from "../context/SearchContext"; // Global search context
 
 const Product = () => {
+  const { searchTerm } = useSearch(); // Access global search term
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -15,11 +17,12 @@ const Product = () => {
         setProducts(data);
         setFilteredProducts(data);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error loading products:", error);
       } finally {
         setLoading(false);
       }
     };
+
     loadProducts();
   }, []);
 
@@ -32,6 +35,7 @@ const Product = () => {
 
   return (
     <>
+      {/* Page Header */}
       <div className="mt-0 bg-gray-200 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
         <h3 className="text-[13px] text-[#f28123] font-bold uppercase tracking-[7px] text-center sm:text-left">
           See more Details
@@ -42,18 +46,7 @@ const Product = () => {
       </div>
 
       <div className="p-4">
-        {/* Search Input */}
-        <div className="mb-6 flex justify-center">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="w-full sm:w-1/2 border border-gray-300 rounded px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        {/* //////////////////// */}
+        {/* Product Grid */}
         <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6 m-3">
           {loading ? (
             <p className="col-span-full text-center">Loading products...</p>

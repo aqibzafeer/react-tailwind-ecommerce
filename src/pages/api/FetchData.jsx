@@ -12,6 +12,7 @@ const api = axios.create({
   },
 });
 
+//  Fetch all products
 export const fetchProducts = async () => {
   try {
     const { data } = await api.get("/");
@@ -22,12 +23,48 @@ export const fetchProducts = async () => {
   }
 };
 
+// Fetch single product by ID
 export const fetchSingleProduct = async (id) => {
   try {
     const { data } = await api.get(`/${id}`);
     return data;
   } catch (error) {
     console.error(`Failed to fetch product ${id}:`, error.message);
+    throw error;
+  }
+};
+
+//  Create new product
+export const createProduct = async (productData) => {
+  try {
+    const { data } = await api.post("/", productData);
+    return data;
+  } catch (error) {
+    console.error("Failed to create product:", error.message);
+    throw error;
+  }
+};
+
+//  Update existing product
+export const updateProduct = async (id, updateData) => {
+  try {
+    const { data } = await api.put(`/${id}`, updateData);
+    return data;
+  } catch (error) {
+    console.error(`Failed to update product ${id}:`, error.message);
+    throw error;
+  }
+};
+
+// Delete a product
+export const deleteProduct = async (id) => {
+  try {
+    const { data } = await api.delete(`/${id}`, {
+      params: { force: true },
+    });
+    return data;
+  } catch (error) {
+    console.error(`Failed to delete product ${id}:`, error.message);
     throw error;
   }
 };
