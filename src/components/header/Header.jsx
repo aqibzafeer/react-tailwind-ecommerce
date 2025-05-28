@@ -153,9 +153,9 @@ function Header() {
                 />
                 <FiSearch className="absolute left-3 top-2.5 text-gray-500" />
               </div>
-              <Link to="/authform" onClick={() => setMenuOpen(false)}>
+              <Link to="/authform">
                 <FiUser className="text-xl text-gray-700 hover:text-purple-600 cursor-pointer" />
-              </Link>{" "}
+              </Link>
               <CartDrawer />
             </div>
           </nav>

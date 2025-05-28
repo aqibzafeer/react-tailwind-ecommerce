@@ -7,6 +7,8 @@ import Category from "./pages/Category";
 import PageNotFound from "./pages/PageNotFound";
 import Checkout from "./pages/Checkout";
 import AuthForm from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import SingleProduct from "./pages/SingleProduct";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +20,8 @@ const AppRoutes = () => {
       <Route path="/products" element={<Products />} />
       <Route path="/category" element={<Category />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="product/:id" element={<SingleProduct />} />
 
       <Route path="*" element={<PageNotFound />} />
     </Routes>

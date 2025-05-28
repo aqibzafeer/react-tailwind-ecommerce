@@ -1,4 +1,3 @@
-// pages/About.jsx
 function About() {
   return (
     <section className="p-6">
