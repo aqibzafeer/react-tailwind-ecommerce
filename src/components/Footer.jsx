@@ -5,7 +5,7 @@ function Footer() {
         {/* Left: Logo + Description */}
         <div className="col-span-2 space-y-4">
           <div className="flex items-center space-x-2">
-            <img src="/public/logo.png" alt="Logo" className="h-15 w-25" />
+            <img src="/logo.png" alt="Logo" className="h-15 w-25" />
           </div>
           <p className="text-gray-600">
             Darwazypy is unmatched when it comes to performance and scalability.
