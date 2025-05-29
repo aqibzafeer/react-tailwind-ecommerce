@@ -16,12 +16,8 @@ import { Link } from "react-router-dom";
 
 const UserDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [quantity, setQuantity] = useState(1);
 
   const toggleDrawer = () => setIsOpen(!isOpen);
-  const handleQuantityChange = (delta) => {
-    setQuantity((prev) => Math.max(1, prev + delta));
-  };
 
   return (
     <>
