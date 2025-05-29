@@ -137,7 +137,7 @@ const UserDrawer = () => {
           <img
             src="https://cdn1.iconfinder.com/data/icons/elevator/154/elevator-user-man-ui-round-login-512.png"
             alt="User"
-            className="w-24 h-24 rounded-full mb-6 object-cover"
+            className="w-50 h-50 rounded-full mb-6 object-cover"
           />
 
           <input

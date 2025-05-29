@@ -10,7 +10,6 @@ import Category from "./pages/Category";
 import Checkout from "./pages/Checkout";
 import SingleProduct from "./pages/SingleProduct";
 import PageNotFound from "./pages/PageNotFound";
-
 import Dashboard from "./pages/Dashboard";
 import AddProductForm from "./pages/AddProductForm";
 import ManageProducts from "./pages/ManageProducts";
