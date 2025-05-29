@@ -64,7 +64,7 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-200 py-4 text-center text-gray-500">
-        WooNuxt v4.4.13 - by Scott Kennedy
+        Copyright 2025 - by Aqib Zafeer
       </div>
     </footer>
   );
