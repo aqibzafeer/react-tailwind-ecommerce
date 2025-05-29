@@ -76,7 +76,6 @@ function Header() {
           <Link to="/contact">Contact</Link>
         </nav>
 
-        {/* Search + Icons */}
         <div className=" items-center space-x-4 hidden lg:flex">
           <SearchBar />
           <UserDrawer />

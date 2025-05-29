@@ -8,7 +8,6 @@ import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import Category from "./pages/Category";
 import Checkout from "./pages/Checkout";
-import AuthForm from "./pages/Auth";
 import SingleProduct from "./pages/SingleProduct";
 import PageNotFound from "./pages/PageNotFound";
 
@@ -22,7 +21,6 @@ function AppRoutes() {
       {/* Main Layout Routes */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/authform" element={<AuthForm />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
