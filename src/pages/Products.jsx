@@ -3,31 +3,27 @@ import { Link } from "react-router-dom";
 import { fetchProducts } from "./api/FetchData";
 import { useSearch } from "../context/SearchContext";
 import { useCart } from "../hooks/useCart";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Product = () => {
   const { searchTerm } = useSearch();
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const perPage = 10;
 
   useEffect(() => {
-    loadProducts(page);
-  }, [page]);
-
-  const loadProducts = async (currentPage) => {
-    try {
-      const data = await fetchProducts(currentPage, perPage);
-      if (data.length < perPage) setHasMore(false); // no more pages
-      setProducts((prev) => [...prev, ...data]);
-    } catch (error) {
-      console.error("Error loading products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error loading products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -39,8 +35,8 @@ const Product = () => {
 
   return (
     <>
-      <div className="mt-0 bg-gradient-to-r from-gray-800 to-indigo-600 text-white min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
-        <h3 className="text-[13px] text-[#f28123] font-bold uppercase text-center sm:text-left">
+      <div className="mt-0 bg-gray-300 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
+        <h3 className="text-[13px] text-gray-900 font-bold uppercase tracking-[7px] text-center sm:text-left">
           See more Details
         </h3>
         <h2 className="text-[50px] font-black text-[#f28123] mt-1 text-center sm:text-left">
@@ -51,7 +47,7 @@ const Product = () => {
       <div className="p-4">
         <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 m-3">
           {loading && products.length === 0 ? (
-            <p className="col-span-full text-center">Loading products...</p>
+            <LoadingSpinner />
           ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <div
@@ -85,18 +81,6 @@ const Product = () => {
             </p>
           )}
         </main>
-
-        {/* Load More Button */}
-        {hasMore && (
-          <div className="text-center mt-6">
-            <button
-              onClick={() => setPage((prev) => prev + 1)}
-              className="mt-2 mb-2 w-1/8 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
-            >
-              Load More
-            </button>
-          </div>
-        )}
       </div>
     </>
   );
