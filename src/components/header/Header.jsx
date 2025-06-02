@@ -54,21 +54,21 @@ function Header() {
                   className="block px-4 py-2 hover:bg-gray-100"
                   onClick={() => setCategoriesOpen(false)}
                 >
-                  Electronics
+                  Men
                 </Link>
                 <Link
                   to="/categories/fashion"
                   className="block px-4 py-2 hover:bg-gray-100"
                   onClick={() => setCategoriesOpen(false)}
                 >
-                  Fashion
+                  Women
                 </Link>
                 <Link
                   to="/categories/home"
                   className="block px-4 py-2 hover:bg-gray-100"
                   onClick={() => setCategoriesOpen(false)}
                 >
-                  Home
+                  Kids
                 </Link>
               </div>
             )}
@@ -109,7 +109,7 @@ function Header() {
                       setMenuOpen(false);
                     }}
                   >
-                    Fashion 1
+                    Men
                   </Link>
                   <Link
                     to="/products"
@@ -119,7 +119,7 @@ function Header() {
                       setMenuOpen(false);
                     }}
                   >
-                    Fashion 2
+                    Women
                   </Link>
                   <Link
                     to="/products"
@@ -129,7 +129,7 @@ function Header() {
                       setMenuOpen(false);
                     }}
                   >
-                    Home
+                    Kids
                   </Link>
                 </div>
               )}

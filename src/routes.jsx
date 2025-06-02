@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import ManageProducts from "./pages/ManageProducts";
 import Orders from "./pages/Orders";
 import ProductSetting from "./pages/ProductSetting";
+import CategoryTShirts from "./components/CategoryTShirts";
 
 function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ function AppRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/categorytshirts" element={<CategoryTShirts />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:id" element={<SingleProduct />} />
       </Route>

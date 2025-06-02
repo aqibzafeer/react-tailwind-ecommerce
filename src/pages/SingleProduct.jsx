@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchSingleProduct } from "../pages/api/FetchData";
 import { useCart } from "../hooks/useCart";
+import FeaturedProducts from "../components/FeaturedProducts";
 
 const stripHtml = (html) => {
   const tmp = document.createElement("DIV");
@@ -115,6 +116,8 @@ const SingleProduct = () => {
           ← Back to Products
         </button>
       </Link>
+
+      <FeaturedProducts />
 
       {/* Image Modal */}
       {showModal && (

@@ -11,7 +11,8 @@ const Product = () => {
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [priceSort, setPriceSort] = useState(""); // NEW
+  const [priceSort, setPriceSort] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -39,10 +40,26 @@ const Product = () => {
     setPriceSort(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  // Search term
   let filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Filter by category
+  if (selectedCategory !== "all") {
+    filteredProducts = filteredProducts.filter((product) =>
+      product.categories?.some(
+        (cat) =>
+          cat.name && cat.name.toLowerCase() === selectedCategory.toLowerCase()
+      )
+    );
+  }
+
+  // Sort by price
   if (priceSort === "low-high") {
     filteredProducts = [...filteredProducts].sort(
       (a, b) => (a.sale_price || a.price) - (b.sale_price || b.price)
@@ -76,7 +93,6 @@ const Product = () => {
       </div>
       <div className="w-full align-middle bg-gray-100 p-4 mx-auto flex flex-col items-center">
         <div className="flex flex-wrap gap-4 justify-center items-center w-full max-w-5xl">
-          {/* Price sort select */}
           <select
             className="p-4"
             value={priceSort}
@@ -94,15 +110,15 @@ const Product = () => {
             <option value="home">Kids</option>
           </select>
 
-          <select className="p-4">
+          <select
+            className="p-4"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
             <option value="all">Category</option>
-            <option value="electronics">T-Shirt</option>
-            <option value="fashion">Jeans</option>
-            <option value="home">Jackets & Coats</option>
-            <option value="books">Dresses</option>
-            <option value="books">Shawl</option>
-            <option value="books">Shorts</option>
-            <option value="books">Tops</option>
+            <option value="T-Shirts">T-Shirts</option>
+            <option value="MEN">MEN</option>
+            <option value="shawl">Shawl</option>
           </select>
         </div>
       </div>
