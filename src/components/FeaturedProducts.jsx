@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
-        setProducts(data.slice(0, 3));
+        setProducts(data.slice(0, 4));
       } catch (error) {
         console.error("Error fetching featured products:", error);
       }
@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
       <h2 className="text-2xl sm:text-3xl font-bold mb-10 mt-20 text-gray-900">
         Featured Products
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products.map((product) => (
           <div
             key={product.id}
@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
                 <img
                   src={product.images?.[0]?.src || "/ImageNotFound.png"}
                   alt={product.name}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-100 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </Link>
               <span className="absolute top-3 right-3 bg-red-900 text-white text-xs px-2 py-1 rounded-full shadow">
