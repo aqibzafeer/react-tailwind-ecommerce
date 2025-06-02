@@ -13,6 +13,7 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [priceSort, setPriceSort] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [alphaSort, setAlphaSort] = useState("");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -44,6 +45,10 @@ const Product = () => {
     setSelectedCategory(e.target.value);
   };
 
+  const handleAlphaSortChange = (e) => {
+    setAlphaSort(e.target.value);
+  };
+
   // Search term
   let filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -70,6 +75,16 @@ const Product = () => {
     );
   }
 
+  if (alphaSort === "a-z") {
+    filteredProducts = [...filteredProducts].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+  } else if (alphaSort === "z-a") {
+    filteredProducts = [...filteredProducts].sort((a, b) =>
+      b.name.localeCompare(a.name)
+    );
+  }
+
   return (
     <>
       <div className="mt-0 bg-gradient-to-r from-gray-800 to-indigo-600 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
@@ -90,11 +105,9 @@ const Product = () => {
           />
           <FiSearch className="absolute left-3 top-3 text-gray-500" />
         </div>
-      </div>
-      <div className="w-full align-middle bg-gray-100 p-4 mx-auto flex flex-col items-center">
-        <div className="flex flex-wrap gap-4 justify-center items-center w-full max-w-5xl">
+        <div className="flex flex-wrap gap-5 mt-5 justify-center items-center w-full text-[#f28123]  max-w-5xl">
           <select
-            className="p-4"
+            className="p-1"
             value={priceSort}
             onChange={handlePriceSortChange}
           >
@@ -104,17 +117,28 @@ const Product = () => {
           </select>
 
           <select
-            className="p-4"
+            className="p-1"
+            value={alphaSort}
+            onChange={handleAlphaSortChange}
+          >
+            <option value="">Sort by Name</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+          </select>
+
+          <select
+            className="p-1"
             value={selectedCategory}
             onChange={handleCategoryChange}
           >
+            <option value="shawl">Shawl</option>
             <option value="all">Category</option>
             <option value="T-Shirts">T-Shirts</option>
             <option value="MEN">MEN</option>
-            <option value="shawl">Shawl</option>
           </select>
         </div>
       </div>
+      <div className="w-full align-middle bg-gray-100 p-4 mx-auto flex flex-col items-center"></div>
 
       <div className="p-4">
         <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 m-3 justify-items-center items-center">
