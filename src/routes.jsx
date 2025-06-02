@@ -11,8 +11,9 @@ import Checkout from "./pages/Checkout";
 import SingleProduct from "./pages/SingleProduct";
 import PageNotFound from "./pages/PageNotFound";
 import Dashboard from "./pages/Dashboard";
-import AddProductForm from "./pages/AddProductForm";
 import ManageProducts from "./pages/ManageProducts";
+import Orders from "./pages/Orders";
+import ProductSetting from "./pages/ProductSetting";
 
 function AppRoutes() {
   return (
@@ -31,8 +32,9 @@ function AppRoutes() {
       {/* Dashboard Layout Routes */}
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path="addproductform" element={<AddProductForm />} />
+        <Route path="orders" element={<Orders />} />
         <Route path="manageproducts" element={<ManageProducts />} />
+        <Route path="productsettings" element={<ProductSetting />} />
       </Route>
 
       {/* 404 Page */}

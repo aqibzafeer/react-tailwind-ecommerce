@@ -5,7 +5,7 @@ const DashboardLayout = () => {
     <>
       <div className="flex items-center justify-between px-4 py-2 bg-white shadow border-b black">
         <Link to="/dashboard">
-          <img src="/logo.png" alt="Logo" className="h-16 w-auto m-2 " />{" "}
+          <img src="/logo.png" alt="Logo" className="h-16 w-auto m-2 " />
         </Link>
 
         <Link to="/">
@@ -15,20 +15,25 @@ const DashboardLayout = () => {
         </Link>
       </div>
 
-      <div className="flex min-h-screen bg-gray-300">
-        <aside className="w-64 bg-gray-900 shadow-md text-amber-50">
+      <div className="flex flex-col md:flex-row min-h-screen bg-gray-300">
+        <aside className="w-full md:w-64 bg-gray-900 shadow-md text-amber-50">
           <div className="p-6 font-bold text-xl"></div>
-
-          <nav className="mt-4">
-            <Link to="/dashboard/manageproducts">
-              <button className="w-full mb-2 text-left px-4 py-2 ">
-                Product List
+          <nav className="text-center mt-4 flex md:block">
+            <Link to="/dashboard/manageproducts" className="flex-1">
+              <button className="w-full mb-2 px-4 py-2 flex justify-center items-center text-center">
+                Products
               </button>
             </Link>
-            <button className="w-full mb-2 text-left px-4 py-2 ">Orders</button>
-            <button className="w-full mb-2 text-left px-4 py-2 ">
-              Settings
-            </button>
+            <Link to="/dashboard/orders">
+              <button className="w-full mb-2 px-4 py-2 flex justify-center items-center text-center">
+                Orders
+              </button>
+            </Link>
+            <Link to="/dashboard/productsettings">
+              <button className="w-full mb-2 px-4 py-2 flex justify-center items-center text-center">
+                Settings
+              </button>
+            </Link>
           </nav>
         </aside>
 
