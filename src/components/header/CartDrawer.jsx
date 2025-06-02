@@ -150,10 +150,7 @@ const CartDrawer = () => {
             <p className="p-4 text-center text-gray-500">Your cart is empty.</p>
           ) : (
             cart.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start gap-4 p-4 border-b"
-              >
+              <div key={item.id} className="flex items-start gap-4 p-4">
                 <img
                   src={item.images?.[0]?.src || "vite.svg"}
                   alt={item.name}

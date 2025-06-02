@@ -9,6 +9,7 @@ const api = axios.create({
   params: {
     consumer_key: CONSUMER_KEY,
     consumer_secret: CONSUMER_SECRET,
+    per_page: 100,
   },
 });
 

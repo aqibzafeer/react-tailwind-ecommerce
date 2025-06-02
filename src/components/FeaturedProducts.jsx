@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../pages/api/FetchData";
+import { useCart } from "../hooks/useCart";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -50,12 +55,23 @@ const FeaturedProducts = () => {
               <p className="text-gray-900 font-bold text-base mb-4">
                 Rs. {product.sale_price || product.price}
               </p>
-              <button className="mt-auto w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="mt-2 mb-2 w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
+              >
                 Add to Cart
               </button>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Link to="/products">
+          <button className="mt-2 mb-2 w-full p-5 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
+            Show All Products
+          </button>
+        </Link>
       </div>
     </section>
   );

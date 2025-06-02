@@ -43,11 +43,11 @@ const SingleProduct = () => {
   return (
     <div className="p-4 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="bg-gray-300 py-10 text-center rounded mb-8">
-        <h3 className="text-sm text-gray-900 uppercase tracking-widest font-bold">
+      <div className="bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-10 text-center rounded mb-8">
+        <h3 className="text-sm  text-[#f28123] uppercase tracking-widest font-bold">
           See more Details
         </h3>
-        <h2 className="text-4xl font-extrabold text-gray-800 mt-2">
+        <h2 className="text-4xl font-extrabold  text-[#f28123] mt-2">
           Single Product
         </h2>
       </div>

@@ -102,27 +102,27 @@ function Header() {
               {categoriesOpen && (
                 <div className="mt-2 w-full bg-white border rounded shadow-lg z-20">
                   <Link
-                    to="/categories/electronics"
+                    to="/products"
                     className="block px-4 py-2 hover:bg-gray-100"
                     onClick={() => {
                       setCategoriesOpen(false);
                       setMenuOpen(false);
                     }}
                   >
-                    Electronics
+                    Fashion 1
                   </Link>
                   <Link
-                    to="/categories/fashion"
+                    to="/products"
                     className="block px-4 py-2 hover:bg-gray-100"
                     onClick={() => {
                       setCategoriesOpen(false);
                       setMenuOpen(false);
                     }}
                   >
-                    Fashion
+                    Fashion 2
                   </Link>
                   <Link
-                    to="/categories/home"
+                    to="/products"
                     className="block px-4 py-2 hover:bg-gray-100"
                     onClick={() => {
                       setCategoriesOpen(false);
