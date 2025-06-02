@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchProducts } from "../pages/api/FetchData";
 
 const FeaturedProducts = () => {
@@ -28,19 +29,24 @@ const FeaturedProducts = () => {
             className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 flex flex-col overflow-hidden"
           >
             <div className="relative group">
-              <img
-                src={product.images?.[0]?.src || "/ImageNotFound.png"}
-                alt={product.name}
-                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-              />
+              <Link to={`/product/${product.id}`}>
+                <img
+                  src={product.images?.[0]?.src || "/ImageNotFound.png"}
+                  alt={product.name}
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
               <span className="absolute top-3 right-3 bg-red-900 text-white text-xs px-2 py-1 rounded-full shadow">
                 New
               </span>
             </div>
             <div className="flex-1 flex flex-col p-4">
-              <h3 className="font-semibold text-lg text-gray-800 mb-1">
-                {product.name}
-              </h3>
+              <Link to={`/product/${product.id}`}>
+                <h3 className="font-semibold text-lg text-gray-800 mb-1">
+                  {product.name}
+                </h3>
+              </Link>
+
               <p className="text-gray-900 font-bold text-base mb-4">
                 Rs. {product.sale_price || product.price}
               </p>

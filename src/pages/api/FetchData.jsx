@@ -12,7 +12,6 @@ const api = axios.create({
   },
 });
 
-//  Fetch all products
 export const fetchProducts = async () => {
   try {
     const { data } = await api.get("/");
@@ -23,7 +22,6 @@ export const fetchProducts = async () => {
   }
 };
 
-// Fetch single product by ID
 export const fetchSingleProduct = async (id) => {
   try {
     const { data } = await api.get(`/${id}`);
@@ -34,7 +32,6 @@ export const fetchSingleProduct = async (id) => {
   }
 };
 
-//  Create new product
 export const createProduct = async (productData) => {
   try {
     const { data } = await api.post("/", productData);
@@ -45,7 +42,6 @@ export const createProduct = async (productData) => {
   }
 };
 
-//  Update existing product
 export const updateProduct = async (id, updateData) => {
   try {
     const { data } = await api.put(`/${id}`, updateData);
@@ -56,7 +52,6 @@ export const updateProduct = async (id, updateData) => {
   }
 };
 
-// Delete a product
 export const deleteProduct = async (id) => {
   try {
     const { data } = await api.delete(`/${id}`, {

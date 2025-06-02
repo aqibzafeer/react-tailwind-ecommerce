@@ -1,93 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-// import { fetchProducts } from "./api/FetchData";
-// import SearchBar from "../components/header/SearchBar";
-// import { useSearch } from "../context/SearchContext"; // Global search context
-
-// const Product = () => {
-//   const { searchTerm } = useSearch(); // Access global search term
-//   const [products, setProducts] = useState([]);
-//   const [filteredProducts, setFilteredProducts] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const loadProducts = async () => {
-//       try {
-//         const data = await fetchProducts();
-//         setProducts(data);
-//         setFilteredProducts(data);
-//       } catch (error) {
-//         console.error("Error loading products:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     loadProducts();
-//   }, []);
-
-//   useEffect(() => {
-//     const filtered = products.filter((product) =>
-//       product.name.toLowerCase().includes(searchTerm.toLowerCase())
-//     );
-//     setFilteredProducts(filtered);
-//   }, [searchTerm, products]);
-
-//   return (
-//     <>
-//       {/* Page Header */}
-//       <div className="mt-0 bg-gray-200 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
-//         <h3 className="text-[13px] text-[#f28123] font-bold uppercase tracking-[7px] text-center sm:text-left">
-//           See more Details
-//         </h3>
-//         <h2 className="text-[50px] font-black text-[#f28123] mt-1 text-center sm:text-left">
-//           Single Product
-//         </h2>
-//       </div>
-
-//       <div className="p-4">
-//         {/* Product Grid */}
-//         <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6 m-3">
-//           {loading ? (
-//             <p className="col-span-full text-center">Loading products...</p>
-//           ) : filteredProducts.length > 0 ? (
-//             filteredProducts.map((product) => (
-//               <div
-//                 key={product.id}
-//                 className="rounded-md p-2 bg-gray-200 shadow h-auto"
-//               >
-//                 <Link to={`/product/${product.id}`}>
-//                   <img
-//                     src={product.images[0]?.src || "/ImageNotFound.png"}
-//                     alt={product.name}
-//                     className="w-full h-100 object-cover mb-2 rounded"
-//                   />
-//                 </Link>
-//                 <Link to={`/product/${product.id}`}>
-//                   <h4 className="font-semibold text-lg">{product.name}</h4>
-//                 </Link>
-//                 <p className="text-gray-700 pt-2.5">
-//                   Rs. {product.sale_price || product.price}
-//                 </p>
-
-//                 <button className="mt-2 mb-2 w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
-//                   Add to Cart
-//                 </button>
-//               </div>
-//             ))
-//           ) : (
-//             <p className="col-span-full text-center text-gray-500">
-//               No products found.
-//             </p>
-//           )}
-//         </main>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Product;
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "./api/FetchData";
@@ -98,52 +8,49 @@ const Product = () => {
   const { searchTerm } = useSearch();
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const perPage = 10;
 
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const data = await fetchProducts();
-        setProducts(data);
-        setFilteredProducts(data);
-      } catch (error) {
-        console.error("Error loading products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    loadProducts(page);
+  }, [page]);
 
-    loadProducts();
-  }, []);
-
-  useEffect(() => {
-    const filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  }, [searchTerm, products]);
+  const loadProducts = async (currentPage) => {
+    try {
+      const data = await fetchProducts(currentPage, perPage);
+      if (data.length < perPage) setHasMore(false); // no more pages
+      setProducts((prev) => [...prev, ...data]);
+    } catch (error) {
+      console.error("Error loading products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddToCart = (product) => {
     addToCart(product);
   };
 
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-      {/* Page Header */}
-      <div className="mt-0 bg-gray-200 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
-        <h3 className="text-[13px] text-[#f28123] font-bold uppercase tracking-[7px] text-center sm:text-left">
+      <div className="mt-0 bg-gray-300 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
+        <h3 className="text-[13px] text-gray-900 font-bold uppercase tracking-[7px] text-center sm:text-left">
           See more Details
         </h3>
         <h2 className="text-[50px] font-black text-[#f28123] mt-1 text-center sm:text-left">
-          Single Product
+          All Product
         </h2>
       </div>
 
       <div className="p-4">
-        {/* Product Grid */}
-        <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6 m-3">
-          {loading ? (
+        <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 m-3">
+          {loading && products.length === 0 ? (
             <p className="col-span-full text-center">Loading products...</p>
           ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -164,7 +71,6 @@ const Product = () => {
                 <p className="text-gray-700 pt-2.5">
                   Rs. {product.sale_price || product.price}
                 </p>
-
                 <button
                   onClick={() => handleAddToCart(product)}
                   className="mt-2 mb-2 w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
@@ -179,6 +85,18 @@ const Product = () => {
             </p>
           )}
         </main>
+
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setPage((prev) => prev + 1)}
+              className="bg-[#f28123] text-white px-6 py-2 rounded shadow hover:bg-orange-600 transition"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

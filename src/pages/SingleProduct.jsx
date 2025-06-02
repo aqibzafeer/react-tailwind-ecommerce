@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchSingleProduct } from "./api/FetchData";
+import { fetchSingleProduct } from "../pages/api/FetchData";
+import { useCart } from "../hooks/useCart";
 
-// Utility to strip HTML tags
 const stripHtml = (html) => {
   const tmp = document.createElement("DIV");
   tmp.innerHTML = html;
@@ -11,6 +11,7 @@ const stripHtml = (html) => {
 
 const SingleProduct = () => {
   const { id } = useParams();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState("");
@@ -42,8 +43,8 @@ const SingleProduct = () => {
   return (
     <div className="p-4 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="bg-gray-100 py-10 text-center rounded mb-8">
-        <h3 className="text-sm text-orange-500 uppercase tracking-widest font-bold">
+      <div className="bg-gray-300 py-10 text-center rounded mb-8">
+        <h3 className="text-sm text-gray-900 uppercase tracking-widest font-bold">
           See more Details
         </h3>
         <h2 className="text-4xl font-extrabold text-gray-800 mt-2">
@@ -82,11 +83,14 @@ const SingleProduct = () => {
           <p className="text-xl text-gray-700 font-semibold mb-5">
             Rs. {product.sale_price || product.price}
           </p>
-          <Link to="/checkout">
-            <button className="mt-6 bg-gradient-to-r from-gray-800 to-indigo-600 text-white px-6 py-2 rounded hover:from-purple-700 hover:to-indigo-700 transition">
-              Add to Cart
-            </button>
-          </Link>
+          <button
+            className="mt-6 bg-gradient-to-r from-gray-800 to-indigo-600 text-white px-6 py-2 rounded hover:from-purple-700 hover:to-indigo-700 transition"
+            onClick={() => {
+              addToCart(product, 1); // You can allow user to select quantity later
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
 
