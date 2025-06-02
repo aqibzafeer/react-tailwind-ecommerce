@@ -103,13 +103,6 @@ const Product = () => {
             <option value="high-low">High-Low</option>
           </select>
 
-          <select className="p-4">
-            <option value="all">Gender</option>
-            <option value="electronics">Mens</option>
-            <option value="fashion">Women</option>
-            <option value="home">Kids</option>
-          </select>
-
           <select
             className="p-4"
             value={selectedCategory}
