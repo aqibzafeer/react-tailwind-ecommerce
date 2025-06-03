@@ -12,14 +12,24 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [priceSort, setPriceSort] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [alphaSort, setAlphaSort] = useState("");
+  const [categorySort, setCategorySort] = useState("all");
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
+
+        // Extract unique categories from products
+        const cats = new Set();
+        data.forEach((product) => {
+          product.categories?.forEach((cat) => {
+            if (cat?.name) cats.add(cat.name);
+          });
+        });
+        setCategories(Array.from(cats));
       } catch (error) {
         console.error("Error loading products:", error);
       } finally {
@@ -41,25 +51,25 @@ const Product = () => {
     setPriceSort(e.target.value);
   };
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
-
   const handleAlphaSortChange = (e) => {
     setAlphaSort(e.target.value);
   };
 
-  // Search term
+  const handleCategorySortChange = (e) => {
+    setCategorySort(e.target.value);
+  };
+
+  // Filter by search term
   let filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Filter by category
-  if (selectedCategory !== "all") {
+  if (categorySort !== "all") {
     filteredProducts = filteredProducts.filter((product) =>
       product.categories?.some(
         (cat) =>
-          cat.name && cat.name.toLowerCase() === selectedCategory.toLowerCase()
+          cat.name && cat.name.toLowerCase() === categorySort.toLowerCase()
       )
     );
   }
@@ -75,6 +85,7 @@ const Product = () => {
     );
   }
 
+  // Sort by name
   if (alphaSort === "a-z") {
     filteredProducts = [...filteredProducts].sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -128,13 +139,15 @@ const Product = () => {
 
           <select
             className="p-1"
-            value={selectedCategory}
-            onChange={handleCategoryChange}
+            value={categorySort}
+            onChange={handleCategorySortChange}
           >
-            <option value="shawl">Shawl</option>
-            <option value="all">Category</option>
-            <option value="T-Shirts">T-Shirts</option>
-            <option value="MEN">MEN</option>
+            <option value="all">All Categories</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
           </select>
         </div>
       </div>
