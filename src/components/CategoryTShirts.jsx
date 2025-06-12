@@ -11,23 +11,15 @@ const CategoryTShirts = () => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
-        const tshirtProducts = data.filter(
-          (product) =>
-            product.category?.toLowerCase() === "t-shirts" ||
-            product.category?.toLowerCase() === "tshirt" ||
-            product.category?.toLowerCase() === "tshirt" ||
-            product.categories?.some((cat) =>
-              typeof cat === "string"
-                ? cat.toLowerCase() === "t-shirts" ||
-                  cat.toLowerCase() === "tshirt"
-                : cat.name?.toLowerCase() === "t-shirts" ||
-                  cat.name?.toLowerCase() === "tshirt"
-            )
-        );
-
-        setProducts(tshirtProducts);
+        // Find the first category from the products
+        const firstCategory = data.length > 0 ? data[0].category : null;
+        // Filter products by the first category
+        const filtered = firstCategory
+          ? data.filter((p) => p.category === firstCategory)
+          : [];
+        setProducts(filtered);
       } catch (error) {
-        console.error("Error fetching t-shirt products:", error);
+        console.error("Error fetching products:", error);
       }
     };
     loadProducts();
@@ -40,12 +32,12 @@ const CategoryTShirts = () => {
   return (
     <section className="p-4 sm:p-8 max-w-7xl mx-auto">
       <h2 className="text-2xl sm:text-3xl font-bold mb-10 mt-20 text-gray-900">
-        T-Shirts Category
+        {products[0]?.category || "Category"} Products
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products.length === 0 && (
           <div className="col-span-full text-center text-gray-500">
-            No t-shirt products found.
+            No products found.
           </div>
         )}
         {products.map((product) => (

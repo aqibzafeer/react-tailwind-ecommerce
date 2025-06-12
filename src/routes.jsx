@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -15,6 +15,7 @@ import ManageProducts from "./pages/ManageProducts";
 import Orders from "./pages/Orders";
 import ProductSetting from "./pages/ProductSetting";
 import CategoryTShirts from "./components/CategoryTShirts";
+import Categories from "./pages/Categories";
 
 function AppRoutes() {
   return (
@@ -26,13 +27,21 @@ function AppRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/categorytshirts" element={<CategoryTShirts />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:id" element={<SingleProduct />} />
       </Route>
 
       {/* Dashboard Layout Routes */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Dashboard />} />
         <Route path="orders" element={<Orders />} />
         <Route path="manageproducts" element={<ManageProducts />} />
