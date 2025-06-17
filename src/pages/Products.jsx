@@ -16,6 +16,9 @@ const Product = () => {
   const [categorySort, setCategorySort] = useState("all");
   const [categories, setCategories] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 20;
+
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -44,18 +47,22 @@ const Product = () => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+    setCurrentPage(1);
   };
 
   const handlePriceSortChange = (e) => {
     setPriceSort(e.target.value);
+    setCurrentPage(1);
   };
 
   const handleAlphaSortChange = (e) => {
     setAlphaSort(e.target.value);
+    setCurrentPage(1);
   };
 
   const handleCategorySortChange = (e) => {
     setCategorySort(e.target.value);
+    setCurrentPage(1);
   };
 
   // Filter by search term
@@ -95,6 +102,24 @@ const Product = () => {
     );
   }
 
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <div className="mt-0 bg-gradient-to-r from-gray-800 to-indigo-600 min-h-[300px] flex flex-col justify-center items-center px-4 md:px-0">
@@ -115,7 +140,7 @@ const Product = () => {
           />
           <FiSearch className="absolute left-3 top-3 text-gray-500" />
         </div>
-        <div className="flex flex-wrap gap-5 mt-5 justify-center items-center w-full text-[#f28123]  max-w-5xl">
+        <div className="flex flex-wrap gap-5 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
           <select
             className="p-1"
             value={priceSort}
@@ -150,14 +175,13 @@ const Product = () => {
           </select>
         </div>
       </div>
-      <div className="w-full align-middle bg-gray-100 p-4 mx-auto flex flex-col items-center"></div>
 
       <div className="p-4">
         <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 m-3 justify-items-center items-center">
           {loading && products.length === 0 ? (
             <LoadingSpinner />
-          ) : filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
+          ) : currentProducts.length > 0 ? (
+            currentProducts.map((product) => (
               <div
                 key={product.id}
                 className="rounded-md p-2 bg-gray-200 shadow h-auto flex flex-col items-center"
@@ -192,6 +216,41 @@ const Product = () => {
             </p>
           )}
         </main>
+
+        {/* Pagination Controls */}
+        {filteredProducts.length > productsPerPage && (
+          <div className="flex justify-center mt-6 space-x-2">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToPage(index + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === index + 1
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
