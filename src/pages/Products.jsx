@@ -5,6 +5,8 @@ import { FiSearch } from "react-icons/fi";
 import { useSearch } from "../context/SearchContext";
 import { useCart } from "../hooks/useCart";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const { searchTerm, setSearchTerm } = useSearch();
@@ -43,6 +45,15 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    toast.success("Added to cart successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      theme: "light",
+    });
   };
 
   const handleSearchChange = (e) => {
@@ -65,22 +76,18 @@ const Product = () => {
     setCurrentPage(1);
   };
 
-  // Filter by search term
   let filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Filter by category
   if (categorySort !== "all") {
     filteredProducts = filteredProducts.filter((product) =>
       product.categories?.some(
-        (cat) =>
-          cat.name && cat.name.toLowerCase() === categorySort.toLowerCase()
+        (cat) => cat.name && cat.name.toLowerCase() === categorySort.toLowerCase()
       )
     );
   }
 
-  // Sort by price
   if (priceSort === "low-high") {
     filteredProducts = [...filteredProducts].sort(
       (a, b) => (a.sale_price || a.price) - (b.sale_price || b.price)
@@ -91,7 +98,6 @@ const Product = () => {
     );
   }
 
-  // Sort by name
   if (alphaSort === "a-z") {
     filteredProducts = [...filteredProducts].sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -102,7 +108,6 @@ const Product = () => {
     );
   }
 
-  // Pagination logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -141,31 +146,19 @@ const Product = () => {
           <FiSearch className="absolute left-3 top-3 text-gray-500" />
         </div>
         <div className="flex flex-wrap gap-5 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
-          <select
-            className="p-1"
-            value={priceSort}
-            onChange={handlePriceSortChange}
-          >
+          <select className="p-1" value={priceSort} onChange={handlePriceSortChange}>
             <option value="">Price</option>
             <option value="low-high">Low-High</option>
             <option value="high-low">High-Low</option>
           </select>
 
-          <select
-            className="p-1"
-            value={alphaSort}
-            onChange={handleAlphaSortChange}
-          >
+          <select className="p-1" value={alphaSort} onChange={handleAlphaSortChange}>
             <option value="">Sort by Name</option>
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
           </select>
 
-          <select
-            className="p-1"
-            value={categorySort}
-            onChange={handleCategorySortChange}
-          >
+          <select className="p-1" value={categorySort} onChange={handleCategorySortChange}>
             <option value="all">All Categories</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -194,9 +187,7 @@ const Product = () => {
                   />
                 </Link>
                 <Link to={`/product/${product.id}`}>
-                  <h4 className="font-semibold text-lg text-center">
-                    {product.name}
-                  </h4>
+                  <h4 className="font-semibold text-lg text-center">{product.name}</h4>
                 </Link>
                 <p className="text-gray-700 pt-2.5 text-3xl text-center">
                   Rs. {product.sale_price || product.price}
@@ -211,13 +202,10 @@ const Product = () => {
               </div>
             ))
           ) : (
-            <p className="col-span-full text-center text-gray-500">
-              No products found.
-            </p>
+            <p className="col-span-full text-center text-gray-500">No products found.</p>
           )}
         </main>
 
-        {/* Pagination Controls */}
         {filteredProducts.length > productsPerPage && (
           <div className="flex justify-center mt-6 space-x-2">
             <button

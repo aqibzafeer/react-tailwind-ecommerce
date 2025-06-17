@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { fetchSingleProduct } from "../pages/api/FetchData";
 import { useCart } from "../hooks/useCart";
 import FeaturedProducts from "../components/FeaturedProducts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const stripHtml = (html) => {
   const tmp = document.createElement("DIV");
@@ -73,7 +75,7 @@ const SingleProduct = () => {
           </p>
           <p className="text-justify mb-5">{stripHtml(product.description)}</p>
           <p className="text-md text-gray-800 font-semibold mt-10 mb-2">
-            AVAILABLE :
+            AVAILABLE:
           </p>
           <p className="text-justify mb-5">{stripHtml(product.stock_status)}</p>
 
@@ -84,10 +86,20 @@ const SingleProduct = () => {
           <p className="text-xl text-gray-700 font-semibold mb-5">
             Rs. {product.sale_price || product.price}
           </p>
+
           <button
             className="mt-6 bg-gradient-to-r from-gray-800 to-indigo-600 text-white px-6 py-2 rounded hover:from-purple-700 hover:to-indigo-700 transition"
             onClick={() => {
-              addToCart(product, 1); // You can allow user to select quantity later
+              addToCart(product, 1);
+              toast.success(" Added to cart successfully!", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+              });
             }}
           >
             Add to Cart
@@ -117,6 +129,7 @@ const SingleProduct = () => {
         </button>
       </Link>
 
+      {/* Featured Section */}
       <FeaturedProducts />
 
       {/* Image Modal */}
