@@ -145,28 +145,41 @@ const Product = () => {
           />
           <FiSearch className="absolute left-3 top-3 text-gray-500" />
         </div>
-        <div className="flex flex-wrap gap-5 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
-          <select className="p-1" value={priceSort} onChange={handlePriceSortChange}>
-            <option value="">Price</option>
-            <option value="low-high">Low-High</option>
-            <option value="high-low">High-Low</option>
-          </select>
+   <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
+  <select
+    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    value={priceSort}
+    onChange={handlePriceSortChange}
+  >
+    <option value="">Price</option>
+    <option value="low-high">Low-High</option>
+    <option value="high-low">High-Low</option>
+  </select>
 
-          <select className="p-1" value={alphaSort} onChange={handleAlphaSortChange}>
-            <option value="">Sort by Name</option>
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-          </select>
+  <select
+    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    value={alphaSort}
+    onChange={handleAlphaSortChange}
+  >
+    <option value="">Sort by Name</option>
+    <option value="a-z">A-Z</option>
+    <option value="z-a">Z-A</option>
+  </select>
 
-          <select className="p-1" value={categorySort} onChange={handleCategorySortChange}>
-            <option value="all">All Categories</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
+  <select
+    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    value={categorySort}
+    onChange={handleCategorySortChange}
+  >
+    <option value="all">All Categories</option>
+    {categories.map((cat) => (
+      <option key={cat} value={cat}>
+        {cat}
+      </option>
+    ))}
+  </select>
+</div>
+
       </div>
 
       <div className="p-4">
