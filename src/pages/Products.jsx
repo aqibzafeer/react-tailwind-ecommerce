@@ -22,7 +22,6 @@ const Product = () => {
         const data = await fetchProducts();
         setProducts(data);
 
-        // Extract unique categories from products
         const cats = new Set();
         data.forEach((product) => {
           product.categories?.forEach((cat) => {
