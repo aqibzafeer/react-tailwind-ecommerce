@@ -147,7 +147,7 @@ const Product = () => {
         </div>
    <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
   <select
-    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    className="p-2 w-full sm:w-auto border rounded text-white"
     value={priceSort}
     onChange={handlePriceSortChange}
   >
@@ -157,7 +157,7 @@ const Product = () => {
   </select>
 
   <select
-    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    className="p-2 w-full sm:w-auto border rounded text-white"
     value={alphaSort}
     onChange={handleAlphaSortChange}
   >
@@ -167,7 +167,7 @@ const Product = () => {
   </select>
 
   <select
-    className="p-2 w-full sm:w-auto border rounded text-gray-800"
+    className="p-2 w-full sm:w-auto border rounded text-white"
     value={categorySort}
     onChange={handleCategorySortChange}
   >
