@@ -145,7 +145,7 @@ const Product = () => {
           />
           <FiSearch className="absolute left-3 top-3 text-gray-500" />
         </div>
-   <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
+   <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-5 mb-5 justify-center items-center w-full text-[#f28123] max-w-5xl">
   <select
     className="p-2 w-full sm:w-auto border rounded text-white"
     value={priceSort}
