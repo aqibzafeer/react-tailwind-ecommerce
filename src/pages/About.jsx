@@ -126,6 +126,17 @@ function About() {
               LinkedIn
             </a>
           </li>
+
+          <li>
+            <a
+              href="#"
+              className="flex items-center gap-2 hover:underline"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <img src="https://img.icons8.com/ios-filled/24/ffffff/tiktok.png" alt="LinkedIn" />
+              TikTok
+            </a>
+          </li>
           <li>
             <a
               href="https://youtube.com"
