@@ -11,17 +11,28 @@ function Header() {
   return (
     <header className="bg-white shadow-md py-4 px-6">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/">
-          <img src="/logo.png" alt="Logo" className="h-15 w-25" />
-        </Link>
+        {/* Left: Logo */}
+        <div className="flex items-center">
+          <Link to="/">
+            <img src="/logo.png" alt="Logo" className="h-15 w-25" />
+          </Link>
+        </div>
 
-        <button
-          className="md:hidden text-2xl text-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
+        {/* Center: Menu Button (mobile only) */}
+        <div className="flex-1 flex justify-center md:hidden">
+          <button
+            className="text-2xl text-gray-700"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
+
+        {/* Right: CartDrawer (mobile only) */}
+        <div className="flex items-center lg:hidden">
+          <CartDrawer />
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="space-x-6 text-gray-700 font-medium hidden md:flex">
@@ -46,26 +57,22 @@ function Header() {
             <Link to="/" onClick={() => setMenuOpen(false)}>
               Home
             </Link>
-
             <Link to="/about" onClick={() => setMenuOpen(false)}>
               About
             </Link>
-
             <Link to="/products" onClick={() => setMenuOpen(false)}>
               Products
             </Link>
-
             <Link to="/categories" onClick={() => setMenuOpen(false)}>
               Categories
             </Link>
-
             <Link to="/contact" onClick={() => setMenuOpen(false)}>
               Contact
             </Link>
             <div className="flex items-center space-x-4 mt-2">
               <SearchBar />
               <UserDrawer />
-              <CartDrawer />
+              {/* Remove CartDrawer here to avoid duplicate on mobile */}
             </div>
           </nav>
         </div>
