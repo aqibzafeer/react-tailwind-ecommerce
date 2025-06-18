@@ -227,7 +227,7 @@ function Checkout() {
 ${cart
   .map(
     (item) =>
-      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}\n🔗 ${siteURL}/product/${fvvaitem.id}`
+      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}\n🔗 ${siteURL}/product/${item.id}`
   )
   .join("\n\n")}
 
