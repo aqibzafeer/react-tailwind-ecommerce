@@ -116,16 +116,6 @@ function About() {
               Instagram
             </a>
           </li>
-          <li>
-            <a
-              href="https://linkedin.com"
-              className="flex items-center gap-2 hover:underline"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn" />
-              LinkedIn
-            </a>
-          </li>
 
           <li>
             <a
@@ -137,6 +127,19 @@ function About() {
               TikTok
             </a>
           </li>
+          
+          <li>
+            <a
+              href="https://linkedin.com"
+              className="flex items-center gap-2 hover:underline"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn" />
+              LinkedIn
+            </a>
+          </li>
+
+
           <li>
             <a
               href="https://youtube.com"
