@@ -178,7 +178,6 @@
 
 // export default Checkout;
 
-
 import React, { useContext, useState } from "react";
 import CartContext from "../context/CartContext";
 
@@ -206,10 +205,11 @@ function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const whatsappNumber = "+923025089439"; // 🟢 Replace with your WhatsApp number (no + or 0)
+    const whatsappNumber = "923025089439"; // ✅ No '+' or leading 0
     const shipping = 500;
     const tax = 200;
     const total = cartTotal + shipping + tax;
+    const siteURL = window.location.origin;
 
     const orderMessage = `*New Order Received* 📦
 
@@ -227,9 +227,9 @@ function Checkout() {
 ${cart
   .map(
     (item) =>
-      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}`
+      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}\n🔗 ${siteURL}/product/${item.slug || item.id}`
   )
-  .join("\n")}
+  .join("\n\n")}
 
 🚚 Shipping: Rs. ${shipping}
 📊 Tax: Rs. ${tax}
@@ -242,7 +242,7 @@ Thank you for your order! 🙏`;
 
     window.open(whatsappURL, "_blank");
 
-    // Optionally clear cart or show confirmation
+    // Optionally clear cart after sending
     // clearCart();
   };
 
@@ -251,16 +251,12 @@ Thank you for your order! 🙏`;
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row gap-10">
         {/* Right: Order Summary */}
         <div className="md:w-1/3 w-full mt-10 md:mt-0 flex flex-col bg-blue-50 rounded-xl p-6 shadow-inner">
-          <h2 className="text-xl font-bold mb-4 text-black-800">
-            Order Summary
-          </h2>
-
+          <h2 className="text-xl font-bold mb-4 text-black-800">Order Summary</h2>
           {cart.map((item) => (
             <div key={item.id} className="flex flex-col mb-4">
               <div className="font-semibold text-gray-800">{item.name}</div>
               <div className="text-sm text-gray-500">
-                Price: Rs {item.sale_price || item.price} &nbsp;|&nbsp; Quantity:{" "}
-                {item.quantity}
+                Price: Rs {item.sale_price || item.price} &nbsp;|&nbsp; Quantity: {item.quantity}
               </div>
             </div>
           ))}
@@ -280,9 +276,7 @@ Thank you for your order! 🙏`;
 
           {/* Payment Section */}
           <div className="mt-8">
-            <h2 className="text-lg font-semibold mb-3 text-black-800">
-              Payment Method
-            </h2>
+            <h2 className="text-lg font-semibold mb-3 text-black-800">Payment Method</h2>
             <div className="flex flex-col gap-3">
               {["cod", "card", "upi"].map((method) => (
                 <label key={method} className="flex items-center cursor-pointer">
