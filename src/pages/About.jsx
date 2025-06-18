@@ -74,9 +74,7 @@ function About() {
           <p className="text-center italic">
             "The quality and service exceeded my expectations! Highly recommended." <br />- Jane Doe
           </p>
-          <p className="text-center italic mt-2">
-            "Fast delivery and amazing support. Will shop again!" <br />- John Smith
-          </p>
+     
         </div>
       </div>
 
