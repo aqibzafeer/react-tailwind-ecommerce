@@ -227,7 +227,7 @@ function Checkout() {
 ${cart
   .map(
     (item) =>
-      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}\n🔗 ${siteURL}/product/${item.slug || item.id}`
+      `• ${item.name} x${item.quantity} = Rs.${item.quantity * (item.sale_price || item.price)}\n🔗 ${siteURL}/product/${fvvaitem.id}`
   )
   .join("\n\n")}
 
@@ -378,7 +378,7 @@ Thank you for your order! 🙏`;
               type="submit"
               className="mt-auto w-full bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
             >
-              Send Order to WhatsApp (Rs: {(cartTotal + 500 + 200).toFixed(2)})
+              Order to WhatsApp (Rs: {(cartTotal + 500 + 200).toFixed(2)})
             </button>
           </form>
         </div>
