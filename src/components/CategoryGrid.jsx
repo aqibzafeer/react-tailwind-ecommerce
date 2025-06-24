@@ -32,29 +32,55 @@ const categoryData = [
 
 const CategoryGrid = () => {
   return (
-    <section className="p-4 sm:p-6 max-w-7xl mx-auto">
-      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
-        Shop by Category
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          Shop by Category
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Discover our carefully curated collections
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categoryData.map((cat) => (
           <div
             key={cat.name}
-            className="relative bg-gray-100 p-0 text-center rounded shadow hover:shadow-md cursor-pointer w-full overflow-hidden"
-            style={{
-              height: "300px",
-              backgroundImage: `url(${cat.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+            className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-80 sm:h-96"
           >
-            <div className="absolute inset-0 bg-black opacity-80  flex items-center justify-center">
-              <h3 className="font-semibold text-base sm:text-lg text-white drop-shadow">
-                {cat.name}
-              </h3>
+            {/* Background Image */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-0">
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
             </div>
+
+            {/* Category Name */}
+            <div className="absolute inset-0 flex items-end p-6 z-10">
+              <div className="w-full text-center transform transition-all duration-500 group-hover:-translate-y-2">
+                <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                  {cat.name}
+                </h3>
+                <button className="opacity-0 group-hover:opacity-100 bg-white text-gray-900 font-medium py-2 px-6 rounded-full shadow-md transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 hover:bg-gray-100">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 z-5"></div>
           </div>
         ))}
+      </div>
+
+      {/* View All Button */}
+      <div className="text-center mt-10">
+        <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all hover:shadow-xl">
+          View All Categories
+        </button>
       </div>
     </section>
   );

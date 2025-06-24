@@ -21,7 +21,6 @@ function Header() {
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        {/* Center: Logo */}
         <Link
           to="/"
           className="absolute left-1/2 transform -translate-x-1/2"
@@ -29,18 +28,15 @@ function Header() {
           <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
         </Link>
 
-        {/* Right: Cart */}
         <div>
           <CartDrawer />
         </div>
       </div>
 
-      {/* Desktop Navbar */}
       <div className="container mx-auto hidden md:flex justify-between items-center">
-        {/* Left: Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src="/logo.png" alt="Logo" className="h-12 w-auto" />
+            <img src="/logo.png" alt="Logo" className="h-20 w-auto" />
           </Link>
         </div>
 

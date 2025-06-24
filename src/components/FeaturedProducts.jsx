@@ -2,14 +2,28 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../pages/api/FetchData";
 import { useCart } from "../hooks/useCart";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    toast.success(`${product.name} added to cart!`, {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      theme: "colored",
+      className: "bg-green-100 text-green-800"
+    });
   };
+
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -17,60 +31,104 @@ const FeaturedProducts = () => {
         setProducts(data.slice(90, 94));
       } catch (error) {
         console.error("Error fetching featured products:", error);
+        toast.error("Failed to load featured products");
+      } finally {
+        setLoading(false);
       }
     };
     loadProducts();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
+
   return (
-    <section className="p-4 sm:p-8 max-w-7xl mx-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-10 mt-20 text-gray-900">
-        Featured Products
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          Featured Products
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Discover our handpicked selection of premium products
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 flex flex-col overflow-hidden"
+            className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
           >
-            <div className="relative group">
+            <div className="relative overflow-hidden">
               <Link to={`/product/${product.id}`}>
-                <img
+                <div className="aspect-w-1 aspect-h-1 w-full">
+                 <img
                   src={product.images?.[0]?.src || "/ImageNotFound.png"}
                   alt={product.name}
                   className="w-full h-100 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
+                </div>
               </Link>
-              <span className="absolute top-3 right-3 bg-red-900 text-white text-xs px-2 py-1 rounded-full shadow">
+              <span className="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 New
               </span>
             </div>
-            <div className="flex-1 flex flex-col p-4">
+
+            <div className="p-5 flex flex-col flex-grow">
               <Link to={`/product/${product.id}`}>
-                <h3 className="font-semibold text-lg text-gray-800 mb-1">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-indigo-600 transition-colors">
                   {product.name}
                 </h3>
               </Link>
 
-              <p className="text-gray-900 font-bold text-base mb-4">
-                Rs. {product.sale_price || product.price}
-              </p>
-              <button
-                onClick={() => handleAddToCart(product)}
-                className="mt-2 mb-2 w-1/2 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition"
-              >
-                Add to Cart
-              </button>
+              <div className="flex items-center justify-between mt-auto">
+                <div>
+                  <span className="text-xl font-bold text-indigo-600">
+                    Rs. {product.sale_price || product.price}
+                  </span>
+                  {product.sale_price && (
+                    <span className="ml-2 text-sm text-gray-500 line-through">
+                      Rs. {product.price}
+                    </span>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md"
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex justify-center mt-8">
-        <Link to="/products">
-          <button className="mt-2 mb-2 w-full p-5 bg-gradient-to-r from-gray-800 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-indigo-700 transition">
-            Show All Products
-          </button>
+      <div className="text-center mt-12">
+        <Link
+          to="/products"
+          className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-full shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all hover:shadow-xl"
+        >
+          View All Products
+          <svg
+            className="w-5 h-5 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            ></path>
+          </svg>
         </Link>
       </div>
     </section>
