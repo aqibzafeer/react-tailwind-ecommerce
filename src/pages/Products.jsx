@@ -107,7 +107,7 @@ const Product = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+   
       <div className="bg-gradient-to-r from-indigo-700 to-purple-800 py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Our Products</h2>
