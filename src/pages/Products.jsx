@@ -169,7 +169,7 @@ const Product = () => {
                   value={categorySort}
                   onChange={handleSortChange(setCategorySort)}
                 >
-                  <option value="all">All Categories</option>
+                  <option value="all">Categories</option>
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>{cat}</option>
                   ))}

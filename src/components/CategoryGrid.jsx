@@ -48,18 +48,17 @@ const CategoryGrid = () => {
             key={cat.name}
             className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-80 sm:h-96"
           >
-            {/* Background Image */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-0">
-              <img
-                src={cat.image}
-                alt={cat.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
+            {/* Background Image with blur on hover */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:blur-sm"
+              style={{ backgroundImage: `url(${cat.image})` }}
+            ></div>
 
-            {/* Category Name */}
-            <div className="absolute inset-0 flex items-end p-6 z-10">
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-10"></div>
+
+            {/* Text Content */}
+            <div className="absolute inset-0 flex items-end p-6 z-20">
               <div className="w-full text-center transform transition-all duration-500 group-hover:-translate-y-2">
                 <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
                   {cat.name}
@@ -69,9 +68,6 @@ const CategoryGrid = () => {
                 </button>
               </div>
             </div>
-
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 z-5"></div>
           </div>
         ))}
       </div>
