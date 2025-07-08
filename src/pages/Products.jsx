@@ -7,6 +7,7 @@ import { useCart } from "../hooks/useCart";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import SmartProductSearch from "../components/SmartProductSearch/SmartProductSearch";
 
 const Product = () => {
   const { searchTerm, setSearchTerm } = useSearch();
@@ -115,6 +116,9 @@ const Product = () => {
             Discover our wide range of high-quality products
           </p>
           
+          {/* ad Search */}
+
+          {/* <SmartProductSearch /> */}
           {/* Search and Filters */}
           <div className="mt-8 max-w-3xl mx-auto">
             <div className="relative">

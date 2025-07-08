@@ -1,302 +1,408 @@
-const About = () => {
-  // Data for reusable components
-  // const teamMembers = [
-  //   {
-  //     name: "Sarah Chen",
-  //     role: "Creative Director",
-  //     bio: "Former Vogue editor with 10+ years in fashion trends",
-  //     img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400"
-  //   },
-  //   {
-  //     name: "James Wilson",
-  //     role: "Head Designer",
-  //     bio: "Specializes in sustainable fabrics and modern silhouettes",
-  //     img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
-  //   },
-  //   {
-  //     name: "Priya Patel",
-  //     role: "Customer Experience",
-  //     bio: "Ensures every order meets our quality standards",
-  //     img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400"
-  //   }
-  // ];
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-  // const values = [
-  //   {
-  //     icon: "🌱",
-  //     title: "Sustainable Fashion",
-  //     description: "Ethically sourced materials with minimal environmental impact"
-  //   },
-  //   {
-  //     icon: "✂️",
-  //     title: "Artisan Crafted",
-  //     description: "Hand-finished details by skilled craftspeople"
-  //   },
-  //   {
-  //     icon: "💎",
-  //     title: "Timeless Quality",
-  //     description: "Investment pieces designed to last for years"
-  //   },
-  //   {
-  //     icon: "🌎",
-  //     title: "Global Inspiration",
-  //     description: "Designs influenced by cultures worldwide"
-  //   }
-  // ];
+const About = () => {
+  const navigate = useNavigate();
+
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.8 } }
+  };
+
+  const socialLinks = [
+    { name: 'Facebook', icon: 'facebook-new', url: 'https://facebook.com' },
+    { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com' },
+    { name: 'Instagram', icon: 'instagram-new', url: 'https://instagram.com' },
+    { name: 'TikTok', icon: 'tiktok', url: 'https://tiktok.com' },
+    { name: 'LinkedIn', icon: 'linkedin', url: 'https://linkedin.com' },
+    { name: 'YouTube', icon: 'youtube-play', url: 'https://youtube.com' },
+  ];
 
   return (
-    <div className="font-sans text-gray-800">
+    <div className="font-sans text-gray-800 overflow-hidden">
       {/* Hero Banner */}
-      <section className="relative h-96 md:h-screen/75 bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200')] bg-cover bg-center opacity-70"></div>
+      <motion.section 
+        initial="hidden"
+        animate="visible"
+        variants={container}
+        className="relative h-[80vh] min-h-[500px] bg-black overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200')] bg-cover bg-center opacity-20" />
         <div className="container mx-auto px-6 h-full flex items-center relative z-10">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Our Fashion Story</h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
-              Curating exceptional style since 2012. Where quality craftsmanship meets contemporary design.
-            </p>
-            <button className="px-8 py-3 bg-white text-black hover:bg-gray-100 transition-colors font-medium">
-              Shop Our Collections
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Philosophy */}
-      {/* <section className="py-20 bg-white">
-        <div className="container mx-auto px-6"> */}
-          {/* <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">The MODA Ethos</h2>
-            <p className="max-w-2xl mx-auto text-gray-600">
-              We believe fashion should be both beautiful and responsible. Our pieces are designed to transcend seasons.
-            </p>
-          </div> */}
-          
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((item, index) => (
-              <div key={index} className="text-center p-6 hover:bg-gray-50 rounded-lg transition-colors">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-serif font-medium mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            ))}
-          </div> */}
-        {/* </div>
-      </section> */}
-{/* ???? */}
-       {/* Core Values Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 group">
-            <div className="bg-indigo-100 p-4 rounded-full mb-4 transition-colors">
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/shopping-cart.png" 
-                alt="Products" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Our Products</h3>
-            <p className="text-gray-600">
-              Explore a diverse range of high-quality products tailored to your needs, from electronics to lifestyle essentials.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 group">
-             <div className="bg-indigo-100 p-4 rounded-full mb-4 transition-colors">
-
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/goal.png" 
-                alt="Mission" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
-            <p className="text-gray-600">
-              To empower lives through innovation, quality, and exceptional customer service, making every day better.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 group">
-                <div className="bg-indigo-100 p-4 rounded-full mb-4 transition-colors">
-
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/rocket--v1.png" 
-                alt="Vision" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Our Vision</h3>
-            <p className="text-gray-600">
-              To be a global leader in providing innovative solutions that inspire and empower communities.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 group">
-                 <div className="bg-indigo-100 p-4 rounded-full mb-4 transition-colors">
-
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/diamond.png" 
-                alt="Values" 
-                className="w-10 h-10 "
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Our Values</h3>
-            <p className="text-gray-600">
-              Integrity, quality, innovation, and customer satisfaction are at the heart of everything we do.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Additional Info Section */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <div className="bg-indigo-100 p-4 rounded-full mb-5">
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/phone.png" 
-                alt="Contact" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Us</h3>
-            <p className="text-gray-600 mb-3">
-              Have questions?
-            </p>
-            <a
-              href="mailto:aqib@darwazypy.com"
-              className="text-indigo-600 hover:text-indigo-800 font-medium"
+          <motion.div 
+            variants={item}
+            className="max-w-2xl"
+          >
+            <motion.h1 
+              className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
+              variants={item}
             >
-              aqib@darwazypy.com
-            </a>
-            <p className="text-gray-600 mt-2">
-              or call us at      <a
-              href="tel:+923025089439"
-              className="text-indigo-600 hover:text-indigo-800 font-medium"
-            ><span className="font-semibold">+92 302 5089439</span></a>
-            </p>
-          </div>
+              Our Fashion Story
+            </motion.h1>
+            <motion.p 
+              className="text-lg md:text-xl text-white/90 mb-8"
+              variants={item}
+            >
+              Curating exceptional style since 2012. Where quality craftsmanship meets contemporary design.
+            </motion.p>
+            <motion.button 
+              onClick={() => navigate("/collections")}
+              className="px-8 py-3 bg-white text-black hover:bg-gray-100 transition-colors font-medium rounded-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              variants={item}
+            >
+              Shop Our Collections
+            </motion.button>
+          </motion.div>
+        </div>
+      </motion.section>
 
-          <div className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <div className="bg-indigo-100 p-4 rounded-full mb-5">
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/group-foreground-selected.png" 
-                alt="Team" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Our Team</h3>
-            <p className="text-gray-600">
-              Meet our talented team of professionals dedicated to delivering the best experience.
+      {/* Core Values Section */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={container}
+        className="py-20 bg-white"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            variants={item}
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Our Core Values</h2>
+            <p className="max-w-2xl mx-auto text-gray-600">
+              The principles that guide everything we do
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <div className="bg-indigo-100 p-4 rounded-full mb-5">
-              <img 
-                src="https://img.icons8.com/ios-filled/50/4a6cf7/feedback.png" 
-                alt="Testimonials" 
-                className="w-10 h-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Customer Testimonials</h3>
-            <div className="bg-indigo-50 p-4 rounded-lg">
-              <p className="text-gray-600 italic">
-                "The quality and service exceeded my expectations! Highly recommended."
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/shopping-cart.png",
+                title: "Our Products",
+                desc: "High-quality products tailored to your needs"
+              },
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/goal.png",
+                title: "Our Mission",
+                desc: "Empower lives through innovation and quality"
+              },
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/rocket--v1.png",
+                title: "Our Vision",
+                desc: "Global leader in innovative solutions"
+              },
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/diamond.png",
+                title: "Our Values",
+                desc: "Integrity, quality, and customer satisfaction"
+              }
+            ].map((value, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 border border-gray-100"
+              >
+                <div className="bg-indigo-100 p-4 rounded-full mb-4">
+                  <img src={value.icon} alt={value.title} className="w-10 h-10" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
+                <p className="text-gray-600">{value.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </motion.section>
+
+      {/* Sustainability */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={container}
+        className="py-20 bg-gray-50"
+      >
+        
+
+
+        <div className="container mx-auto px-6 py-16">
+  <motion.div 
+    className="flex flex-col lg:flex-row items-center gap-12"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-100px" }}
+    variants={container}
+  >
+    {/* Image Section */}
+    <motion.div 
+      className="lg:w-1/2 relative"
+      variants={item}
+    >
+      <motion.img 
+        src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800" 
+        alt="Sustainable garment production"
+        className="rounded-xl shadow-xl w-full"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      />
+      <motion.div 
+        className="absolute -bottom-6 -right-6 bg-white px-6 py-3 rounded-lg shadow-md border border-gray-100"
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, type: "spring" }}
+      >
+        <p className="font-medium text-indigo-600">Since 2015</p>
+      </motion.div>
+    </motion.div>
+
+    {/* Content Section */}
+    <motion.div 
+      className="lg:w-1/2"
+      variants={container}
+    >
+      <motion.div variants={item}>
+        <span className="text-sm font-semibold tracking-wider text-indigo-600 uppercase">
+          Our Commitment
+        </span>
+        <motion.h2 
+          className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6"
+          variants={item}
+        >
+          Ethical Fashion Forward
+        </motion.h2>
+        <p className="text-gray-600 mb-8">
+          At our garment store, we believe style shouldn't compromise our planet's future. 
+          Discover how we're redefining fashion sustainability.
+        </p>
+      </motion.div>
+
+      <div className="space-y-6">
+        {[
+          {
+   
+            title: "Eco-Fabrics",
+            desc: "We use 85% organic cotton, bamboo, and recycled polyester in our collections",
+            color: "text-green-500"
+          },
+          {
+      
+            title: "Artisan Crafted",
+            desc: "Hand-finished by skilled tailors using traditional techniques",
+            color: "text-amber-500"
+          },
+          // {
+          
+          //   title: "Carbon Neutral",
+          //   desc: "Offsetting 100% of our carbon footprint through reforestation",
+          //   color: "text-blue-500"
+          // },
+          // {
+         
+          //   title: "Water Wise",
+          //   desc: "Using innovative dyeing processes that reduce water usage by 70%",
+          //   color: "text-cyan-500"
+          // }
+        ].map((item, index) => (
+          <motion.div 
+            key={index}
+            className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors"
+            variants={item}
+            whileHover={{ x: 5 }}
+          >
+            <div className={`text-3xl ${item.color}`}>{item.icon}</div>
+            <div>
+              <h3 className="font-semibold text-lg text-gray-900">{item.title}</h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-   
-      {/* Sustainability */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <img 
-                src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800" 
-                alt="Sustainable materials"
-                className="rounded-lg shadow-md w-full"
-              />
-            </div>
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Sustainable Practices</h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">♻️</div>
-                  <div>
-                    <h3 className="font-medium text-lg">Eco-Friendly Materials</h3>
-                    <p className="text-gray-600">85% of our fabrics are organic, recycled, or biodegradable</p>
+      <motion.div 
+        className="mt-8"
+        variants={item}
+      >
+        <motion.button
+          className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          Learn About Our Process
+        </motion.button>
+      </motion.div>
+    </motion.div>
+  </motion.div>
+</div>
+      </motion.section>
+
+      {/* Info Cards */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={container}
+        className="py-16 bg-white"
+      >
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/phone.png",
+                title: "Contact Us",
+                content: (
+                  <>
+                    <p className="text-gray-600 mb-3">Have questions?</p>
+                    <a href="mailto:aqib@darwazypy.com" className="text-indigo-600 hover:text-indigo-800 font-medium">
+                      aqib@darwazypy.com
+                    </a>
+                    <p className="text-gray-600 mt-2">
+                      or call us at <a href="tel:+923025089439" className="text-indigo-600 hover:text-indigo-800 font-medium">
+                        +92 302 5089439
+                      </a>
+                    </p>
+                  </>
+                )
+              },
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/group-foreground-selected.png",
+                title: "Our Team",
+                content: (
+                  <p className="text-gray-600">
+                    Talented professionals dedicated to delivering the best experience.
+                  </p>
+                )
+              },
+              {
+                icon: "https://img.icons8.com/ios-filled/50/4a6cf7/feedback.png",
+                title: "Testimonials",
+                content: (
+                  <div className="bg-indigo-50 p-4 rounded-lg">
+                    <p className="text-gray-600 italic">
+                      "The quality and service exceeded my expectations! Highly recommended."
+                    </p>
                   </div>
+                )
+              }
+            ].map((card, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-all border border-gray-100"
+              >
+                <div className="bg-indigo-100 p-4 rounded-full mb-5">
+                  <img src={card.icon} alt={card.title} className="w-10 h-10" />
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">🌿</div>
-                  <div>
-                    <h3 className="font-medium text-lg">Ethical Production</h3>
-                    <p className="text-gray-600">Fair wages and safe working conditions at all partner factories</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">📦</div>
-                  <div>
-                    <h3 className="font-medium text-lg">Reduced Waste</h3>
-                    <p className="text-gray-600">Plastic-free packaging and minimal inventory waste</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{card.title}</h3>
+                {card.content}
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Meet the Team */}
-
-
-      {/* Customer Promise */}
-
-  <section className="py-16 bg-gray-100">
+      {/* Newsletter */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+        className="py-16 bg-gray-100"
+      >
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">Join Our Community</h2>
-          <p className="text-gray-600 mb-8">
+          <motion.h2 
+            className="text-2xl md:text-3xl font-serif font-bold mb-4"
+            variants={item}
+          >
+            Join Our Community
+          </motion.h2>
+          <motion.p 
+            className="text-gray-600 mb-8"
+            variants={item}
+          >
             Get 15% off your first order and exclusive access to new collections
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+            variants={item}
+          >
             <input 
               type="email" 
               placeholder="Your email address" 
               className="flex-grow px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
-            <button className="px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors font-medium">
+            <motion.button 
+              className="px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors font-medium rounded-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Subscribe
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-    {/* Social Media Section */}
-      <div className="bg-gradient-to-r from-indigo-700 to-purple-600 py-16">
+      {/* Social Media */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={container}
+        className="bg-gradient-to-r from-indigo-700 to-purple-600 py-16"
+      >
         <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-6">Follow Us</h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
-            Stay updated with our latest products, offers, and news by following us on social media.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { name: 'Facebook', icon: 'facebook-new', url: 'https://facebook.com' },
-              { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com' },
-              { name: 'Instagram', icon: 'instagram-new', url: 'https://instagram.com' },
-              { name: 'TikTok', icon: 'tiktok', url: 'https://tiktok.com' },
-              { name: 'LinkedIn', icon: 'linkedin', url: 'https://linkedin.com' },
-              { name: 'YouTube', icon: 'youtube-play', url: 'https://youtube.com' },
-            ].map((social) => (
-              <a
-                key={social.name}
+          <motion.h2 
+            className="text-3xl font-bold mb-6"
+            variants={item}
+          >
+            Follow Us
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-white/90 max-w-2xl mx-auto mb-8"
+            variants={item}
+          >
+            Stay updated with our latest products, offers, and news.
+          </motion.p>
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4"
+            variants={container}
+          >
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-white/20 px-5 py-3 rounded-lg flex items-center gap-2 transition-colors"
+                whileHover={{ y: -5 }}
+                variants={item}
               >
                 <img 
                   src={`https://img.icons8.com/ios-filled/24/ffffff/${social.icon}.png`} 
@@ -304,15 +410,11 @@ const About = () => {
                   className="w-5 h-5"
                 />
                 <span>{social.name}</span>
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
-    
-
-      {/* Newsletter */}
-    
+      </motion.section>
     </div>
   );
 };

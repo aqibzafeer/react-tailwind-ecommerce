@@ -1,36 +1,41 @@
+import { useNavigate } from "react-router-dom";
+
+
 const categoryData = [
   {
-    name: "Cardigans & Jumpers",
+    name: "Men | TShirt",
     image:
-      "https://kaleidoscope.scene7.com/is/image/OttoUK/300w/LASCANA-Ajour-Pattern-Cardigan~15120560FRSP.jpg",
+      "https://flyingcart.pk/cdn/shop/files/01_2d4b06fd-e7ea-4fcd-aba9-11d2e3831ec6.jpg",
   },
   {
-    name: "Dresses",
+    name: "Men | Suits",
     image:
-      "https://ayeshaandusman.com/cdn/shop/products/pinkbridalwear_1024x1024.jpg",
+      "https://edge.pk/cdn/shop/files/IMG_5206_f5366b9c-4bf9-4e8d-a1fd-dcbb24c93b4c.jpg",
   },
   {
-    name: "Shawl",
+    name: "Women | Suits(Unstiched)",
     image:
       "https://v3.woonuxt.com/.netlify/images?w=220&h=248&url=https:%2F%2Fsecure.woonuxt.com%2Fwp-content%2Fuploads%2F2021%2F10%2FScreenshot-2021-10-10-at-10.50.32-a.m..png",
   },
   {
-    name: "Jackets & Coats",
+    name: "Boys",
     image:
-      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/3de3f5de-4a1f-466b-ae72-d6399f125f83.__CR0,0,600,450_PT0_SX600_V1___.jpg",
+      "https://www.saeedajmalstores.com/cdn/shop/products/gry-1_400x.jpg",
   },
   {
-    name: "Shorts",
-    image: "https://m.media-amazon.com/images/I/61SwRFfJerL._AC_UY1100_.jpg",
+    name: "Girls",
+    image: "https://www.affordable.pk/uploads/products/thumbs/large_16680945710_Blue-Bells-khaddar-shalwar-kameez-Stitched-by-Modest-winter-03.jpg",
   },
   {
-    name: "Tops",
+    name: "Polo Shirt",
     image:
-      "https://m.media-amazon.com/images/I/51SJ-kW06HL._QL92_SH45_SR240,220_.jpg",
+      "https://saeedajmalstores.com/cdn/shop/files/Men-Short-Sleeve-Polo-Shirt-Parrot-2.jpg",
   },
 ];
 
 const CategoryGrid = () => {
+
+    const navigate = useNavigate();
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-12">
@@ -59,13 +64,17 @@ const CategoryGrid = () => {
 
             {/* Text Content */}
             <div className="absolute inset-0 flex items-end p-6 z-20">
-              <div className="w-full text-center transform transition-all duration-500 group-hover:-translate-y-2">
+              <div onClick={() => navigate("/products")} className="w-full text-center transform transition-all duration-500 group-hover:-translate-y-2">
+            
                 <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
                   {cat.name}
                 </h3>
-                <button className="opacity-0 group-hover:opacity-100 bg-white text-gray-900 font-medium py-2 px-6 rounded-full shadow-md transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 hover:bg-gray-100">
-                  Shop Now
-                </button>
+            {/* <button
+              
+              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"
+            >
+              Shop Now
+            </button> */}
               </div>
             </div>
           </div>
@@ -74,9 +83,13 @@ const CategoryGrid = () => {
 
       {/* View All Button */}
       <div className="text-center mt-10">
-        <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all hover:shadow-xl">
+                <button
+              onClick={() => navigate("/products")}
+              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"
+            >
           View All Categories
         </button>
+        
       </div>
     </section>
   );
