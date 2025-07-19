@@ -58,18 +58,27 @@ const About = () => {
               className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
               variants={item}
             >
-              Our Fashion Story
+            
+     <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+        Our Fashion Story
+        </span> 
+
+              
             </motion.h1>
             <motion.p 
               className="text-lg md:text-xl text-white/90 mb-8"
               variants={item}
             >
+     <span className="bg-clip-text text-transparent bg-white">
               Curating exceptional style since 2012. Where quality craftsmanship meets contemporary design.
+        </span> 
+
+
+
             </motion.p>
             <motion.button 
-              onClick={() => navigate("/collections")}
-              className="px-8 py-3 bg-white text-black hover:bg-gray-100 transition-colors font-medium rounded-lg"
-              whileHover={{ scale: 1.05 }}
+              onClick={() => navigate("/categories")}
+        className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               variants={item}
             >
@@ -92,7 +101,13 @@ const About = () => {
             className="text-center mb-16"
             variants={item}
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Our Core Values</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+              
+                                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+          Our Core Values
+          </span> 
+              
+              </h2>
             <p className="max-w-2xl mx-auto text-gray-600">
               The principles that guide everything we do
             </p>
@@ -130,7 +145,9 @@ const About = () => {
                 <div className="bg-indigo-100 p-4 rounded-full mb-4">
                   <img src={value.icon} alt={value.title} className="w-10 h-10" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+
+           {value.title}</span> </h3>
                 <p className="text-gray-600">{value.desc}</p>
               </motion.div>
             ))}
@@ -163,7 +180,7 @@ const About = () => {
       variants={item}
     >
       <motion.img 
-        src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800" 
+           src="/banner-img.jpeg"
         alt="Sustainable garment production"
         className="rounded-xl shadow-xl w-full"
         initial={{ opacity: 0, x: -50 }}
@@ -188,14 +205,16 @@ const About = () => {
       variants={container}
     >
       <motion.div variants={item}>
-        <span className="text-sm font-semibold tracking-wider text-indigo-600 uppercase">
-          Our Commitment
+                          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+         Our Commitment
         </span>
         <motion.h2 
           className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6"
           variants={item}
         >
-          Ethical Fashion Forward
+                           <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+       
+          Ethical Fashion Forward</span>
         </motion.h2>
         <p className="text-gray-600 mb-8">
           At our garment store, we believe style shouldn't compromise our planet's future. 
@@ -238,7 +257,9 @@ const About = () => {
           >
             <div className={`text-3xl ${item.color}`}>{item.icon}</div>
             <div>
-              <h3 className="font-semibold text-lg text-gray-900">{item.title}</h3>
+              <h3 className="font-semibold text-lg text-gray-900">                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+      
+        {item.title}</span> </h3>
               <p className="text-gray-600">{item.desc}</p>
             </div>
           </motion.div>
@@ -250,8 +271,7 @@ const About = () => {
         variants={item}
       >
         <motion.button
-          className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-          whileHover={{ scale: 1.03 }}
+        className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
           Learn About Our Process
@@ -320,7 +340,9 @@ const About = () => {
                 <div className="bg-indigo-100 p-4 rounded-full mb-5">
                   <img src={card.icon} alt={card.title} className="w-10 h-10" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{card.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4"><span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+        
+        {card.title}</span></h3>
                 {card.content}
               </motion.div>
             ))}
@@ -341,7 +363,9 @@ const About = () => {
             className="text-2xl md:text-3xl font-serif font-bold mb-4"
             variants={item}
           >
-            Join Our Community
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+       Join Our Community
+        </span> 
           </motion.h2>
           <motion.p 
             className="text-gray-600 mb-8"
@@ -359,8 +383,8 @@ const About = () => {
               className="flex-grow px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
             <motion.button 
-              className="px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors font-medium rounded-lg"
-              whileHover={{ scale: 1.05 }}
+        className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"
+whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Subscribe
