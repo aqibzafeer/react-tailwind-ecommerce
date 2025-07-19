@@ -14,7 +14,9 @@ const OurValues = () => {
           className="text-center mb-16"
         >
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
-            Our Values
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+          Our Values
+          </span>   
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             It is very important for designers to have inspiration and principles in their work.
