@@ -12,7 +12,7 @@ function Home() {
       <CategoryGrid />      
       <FeatureSection />
       <BuySection/>
-      {/* <OurValues /> */}
+      <OurValues />
       <FeaturedProducts />
     </div>
   );
