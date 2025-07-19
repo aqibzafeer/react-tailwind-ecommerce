@@ -51,7 +51,9 @@ const FeaturedProducts = () => {
     <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-          Featured Products
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+        Featured Products
+        </span> 
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Discover our handpicked selection of premium products
@@ -98,6 +100,8 @@ const FeaturedProducts = () => {
                   )}
                 </div>
 
+
+
                 <button
                   onClick={() => handleAddToCart(product)}
                   className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md"
@@ -111,12 +115,14 @@ const FeaturedProducts = () => {
       </div>
 
       <div className="text-center mt-12">
-        <Link
-          to="/products"
-          className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-full shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all hover:shadow-xl"
-        >
+
+
+            <button
+              onClick={() => navigate("/products")}
+              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1"
+            >
           View All Products
-          <svg
+                     {/* <svg
             className="w-5 h-5 ml-2"
             fill="none"
             stroke="currentColor"
@@ -128,8 +134,10 @@ const FeaturedProducts = () => {
               strokeWidth="2"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
             ></path>
-          </svg>
-        </Link>
+          </svg> */}
+            </button>
+
+
       </div>
     </section>
   );
